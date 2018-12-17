@@ -35,8 +35,11 @@
 					img.xc = randInt(img.dvd.clientWidth - img.clientWidth);
 					img.style.top = img.yc.toString() + "px";
 					img.style.left = img.xc.toString() + "px";
-					img.vx = 1.0;
-					img.vy = 1.0;
+					var angle = Math.random() * (2.0 * Math.PI);
+					img.vx = 2.0 * Math.cos(angle);
+					img.vy = 2.0 * Math.sin(angle);
+					/*img.vx = Math.random() > 0.5 ? 1.0 : -1.0;
+					img.vy = Math.random() > 0.5 ? 1.0 : -1.0;*/
 					img.t = (new Date()).getTime();
 					img.moveSome = function(){
 						var newT = (new Date()).getTime();
@@ -47,22 +50,22 @@
 						var newY = this.yc + (d * this.vy);
 						if(newY < 0){
 							newY = -1.0 * newY;
-							this.vy = 1.0;
+							this.vy *= -1.0;
 						}
 						else if(newY > maxY){
 							newY = maxY - (newY - maxY);
 							//newY = 2.0 * maxY - newY;
-							this.vy = -1.0;
+							this.vy *= -1.0;
 						}
 						var newX = this.xc + (d * this.vx);
 						if(newX < 0){
 							newX = -1.0 * newX;
-							this.vx = 1.0;
+							this.vx *= -1.0;
 						}
 						else if(newX > maxX){
 							newX = maxX - (newX - maxX);
 							//newX = 2.0 * maxX - newX;
-							this.vx = -1.0;
+							this.vx *= -1.0;
 						}
 						this.yc = newY;
 						this.xc = newX;
